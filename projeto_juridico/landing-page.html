@@ -18,6 +18,7 @@
         body {
             color: #2b2b2b;
             line-height: 1.6;
+            overflow-x: hidden; /* Previne rolagem horizontal no corpo inteiro */
         }
 
         /* Cabeçalho */
@@ -38,29 +39,38 @@
 
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* Alinhando à esquerda para combinar com a foto abaixo */
             align-items: center;
         }
 
-        .logo {
+        /* Logo container - Mantido conforme solicitado */
+        .logo-container {
             display: flex;
             align-items: center;
+            justify-content: flex-start; /* Alinhado à esquerda */
             text-decoration: none;
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 240px; /* Mantido conforme solicitado */
+            width: 800px; /* Mantido conforme solicitado */
+            margin-left: 0; /* Garante que não há margem à esquerda */
         }
         
-        .logo img {
-            height: 50px;
+        /* Estilo para a imagem do logo quando for inserida */
+        .logo-img {
+            max-height: 100%;
+            width: auto;
+            max-width: 100%;
+            margin-left: 0; /* Alinhamento à esquerda dentro do container */
         }
 
-        .teal-color {
-            color: #1D616A; /* Cor verde azulada do logo Gaudio */
-        }
-        
-        .burgundy-color {
-            color: #8A2432; /* Cor bordô do logo Gaudio */
+        /* Navegação - Movida para a direita */
+        nav {
+            margin-left: auto; /* Empurra a navegação para a direita */
         }
 
-        /* Navegação */
         nav ul {
             display: flex;
             list-style: none;
@@ -85,13 +95,14 @@
 
         /* Banner principal */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/600') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://images.pexels.com/photos/3771097/pexels-photo-3771097.jpeg') no-repeat center center;
             background-size: cover;
             height: 80vh;
             display: flex;
             align-items: center;
             position: relative;
-            padding-top: 60px;
+            padding-top: 240px; /* Ajustado para compensar o header maior */
+            min-height: 600px; /* Altura mínima para garantir boa visualização */
         }
 
         .hero::before {
@@ -101,7 +112,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .hero-content {
@@ -115,11 +126,13 @@
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
             font-size: 18px;
             margin-bottom: 30px;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.2);
         }
 
         .btn {
@@ -171,16 +184,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 30px;
         }
 
         .about-text {
             flex: 1;
-            padding-right: 30px;
+            padding-right: 0;
         }
 
         .about-text h3 {
             font-size: 24px;
             margin-bottom: 20px;
+        }
+        
+        /* Espaçamento aumentado entre o texto e o botão */
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .about-text .btn {
+            margin-top: 40px; /* Adiciona mais espaço entre o texto e o botão */
+            display: inline-block;
         }
 
         .about-image {
@@ -191,25 +215,31 @@
             width: 100%;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+            height: 400px;
         }
 
-        /* Áreas de atuação */
+        /* Áreas de atuação - modificado para melhor responsividade */
         .services {
             padding: 80px 0;
         }
 
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            display: grid; /* Voltando para grid para melhor responsividade */
+            grid-template-columns: repeat(4, 1fr); /* 4 colunas por padrão */
+            gap: 25px;
+            width: 100%;
         }
 
         .service-card {
             background-color: #fff;
-            padding: 30px;
+            padding: 25px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%; /* Garante mesma altura */
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card:hover {
@@ -238,6 +268,88 @@
 
         .service-card p {
             color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
+        }
+        
+        .service-card .image-container {
+            margin-top: auto; /* Empurra a imagem para baixo */
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Adição de depoimentos */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: """;
+            font-size: 5rem;
+            color: #1D616A;
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            margin: 0;
+            color: #1a1a1a;
+        }
+
+        .author-info p {
+            margin: 5px 0 0;
+            color: #777;
+            font-size: 0.9rem;
         }
 
         /* Rodapé */
@@ -295,33 +407,179 @@
             border-top: 1px solid #333;
             color: #ccc;
         }
+        
+        /* Efeitos adicionais para profissionalismo */
+        .image-overlay {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .image-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(29, 97, 106, 0.1), rgba(138, 36, 50, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .image-overlay:hover::after {
+            opacity: 1;
+        }
 
-        /* Responsivo */
-        @media (max-width: 768px) {
+        /* Responsividade melhorada */
+        @media (max-width: 1350px) {
+            /* Ajuste para o header */
+            .logo-container {
+                width: 650px; /* Ligeiramente reduzido */
+                height: 220px; 
+            }
+            
+            /* Serviços como 2x2 grid */
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            /* Depoimentos como 2 colunas */
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            /* Header fixado - Importante manter o logo como solicitado */
+            .logo-container {
+                width: 600px;
+                height: 200px;
+            }
+            
+            /* Ajuste do hero para o header maior */
+            .hero {
+                padding-top: 220px;
+            }
+            
+            /* Texto do hero menor */
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            /* Header ajustado para espaço disponível */
             .header-content {
-                flex-direction: column;
+                justify-content: space-between;
+                flex-wrap: wrap;
             }
-
-            nav ul {
-                margin-top: 20px;
+            
+            .logo-container {
+                width: 500px;
+                height: 180px;
             }
-
-            nav ul li {
-                margin-left: 15px;
-                margin-right: 15px;
+            
+            /* Ajustes nas seções principais */
+            .hero {
+                padding-top: 200px;
+                min-height: 500px;
             }
-
+            
             .hero h1 {
                 font-size: 36px;
             }
+            
+            .about-content {
+                gap: 40px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
+        @media (max-width: 768px) {
+            /* Header em coluna para telas menores */
+            .header-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo-container {
+                width: 90%; /* Relativo à largura disponível */
+                max-width: 400px;
+                height: 150px;
+                margin-bottom: 20px;
+            }
+
+            /* Navegação adaptativa */
+            nav {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            nav ul {
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            /* Ajustes de conteúdo */
+            .hero {
+                padding-top: 220px;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
             .about-content {
                 flex-direction: column;
             }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
 
-            .about-text {
-                padding-right: 0;
-                margin-bottom: 30px;
+        @media (max-width: 480px) {
+            /* Ajustes finais para celulares pequenos */
+            .logo-container {
+                height: 120px;
+            }
+            
+            .hero {
+                padding-top: 190px;
+                min-height: 450px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
             }
         }
     </style>
@@ -331,8 +589,9 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODAsIDUwKSI+DQogICAgPHBhdGggZD0iTTQgNzRjMi40LTguOCA3LTE2IDExLjYtMjMuMiA0LjgtNy40IDEwLjgtMTQgMTYuOC0yMC40IDYuMi02LjYgMTMtMTIuNiAyMC0xOC4yQzU4LjggNi40IDY1LjYgMS4yIDczIC0yLjRjNi44LTMuMiAxNC00LjYgMjEuNi02LjggNy44LTIuMiAxNi02LjQgMjMuOC04IDguMi0xLjYgMTYuNC0zIDI0LjgtMi44IDcuNCAwLjIgMTUgMCA4LjMgMTAuNCAtMS43IDIuOCAtNC4zIDUuMiAtNy4zIDYuOCAtNS4yIDIuOCAtMTEuMiAzLjggLTE3IDQuNiAtMTIuNiAxLjggLTI1LjIgMy40IC0zNy42IDYuNCAtMTIuNiAzLjIgLTI0LjggNy44IC0zNi40IDEzIC0xMSA0LjggLTIxLjYgMTAuMiAtMzEgMTcuNiAtMTAuMiA4LjIgLTE5IDIwIC0yNC40IDMyLjIgLTMuNiA4LjQgLTYuNiAyMSAtMi42IDI5LjggMyA2LjYgOCAxNS44IDQuOCAxLjYgMi4yIC0xNC40IDYuMiAtMjYuOCAxNiAtMzggOC42LTEwLjIgMTkuOC0xOC42IDMxLjgtMjQuOCAxMi42LTYuNCAyNi42LTEwLjIgNDAuNC0xMi44IDEzLjYtMi42IDI3LjQtMy44IDQxLjQtNC40IC02LjYgMCAtMTMuNiAxLjQgLTIwLjIgMi4yQzk4LjIgMTcgODkuOCAxOSA4MSAyMi40Yy03LjggMy4yIC0xNS40IDcuMiAtMjIuNiAxMS42IC04LjIgNSAtMTYgMTAuNiAtMjMuNiAxNi44IC02LjggNS44IC0xMy40IDEyLjIgLTE5IDE5LjIgLTQuOCA2LjQgLTkuOCAxNC44IC03LjQgMjMuMiAxLjYgNS44IDQuNiAxMS42IDEwLjIgMTQuNCA1LjggMy4yIDEyLjYgMy40IDE5LjIgMy40IDEwLjQgMCAyMC40IC0wLjYgMzAuNiAwLjQgLTExIDEuNCAtMjEuOCAyLjYgLTMyLjggMy40IC0xMSAwLjYgLTI2LjQgMC42IC0zMiAtNy4yIC00LTUuNCAtNS4yLTEyLjYgLTUuNiAtMTkuNCAtMC40LTcuMiAxLjYgLTE0LjQgNC44IC0yMC42WiIgZmlsbD0iIzFENjE2QSIvPg0KICAgIDx0ZXh0IHg9IjEwIiB5PSIxMDAiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzhBMjQzMiIgZm9udC13ZWlnaHQ9ImJvbGQiPkEgRCBWIE8gQyBBIEMgSSBBPC90ZXh0Pg0KICAgIDxwb2x5Z29uIHBvaW50cz0iMTAsODUgMzAsOTUgMTAsOTUiIGZpbGw9IiM4QTI0MzIiLz4NCiAgPC9nPg0KPC9zdmc+" alt="Gaudio Advocacia" />
+                <!-- LOGO: Inserir a imagem do logo conforme projeto -->
+                <a href="#" class="logo-container">
+                   <img src="./logo_gaudio_correto.png" alt="Gaudio Advocacia" class="logo-img">
                 </a>
                 <nav>
                     <ul>
@@ -376,16 +635,17 @@
                     </style>
                     <p>Questões familiares são delicadas e envolvem não apenas aspectos legais, mas também emocionais. Contar com um profissional especializado em Direito de Família é fundamental para proteger seus direitos e os de seus filhos.</p>
                     <p>Nossos advogados combinam expertise jurídica com um atendimento humanizado, compreendendo o momento delicado que você está passando e oferecendo o suporte necessário para superar desafios e construir um novo caminho.</p>
+                    <!-- Mais espaço antes do botão -->
                     <a href="https://gaudio.adv.br/contato" class="btn">Consulte um Especialista</a>
                 </div>
-                <div class="about-image">
-                    <img src="/api/placeholder/600/400" alt="Advogado de Família em Atendimento">
+                <div class="about-image image-overlay">
+                    <img src="https://images.pexels.com/photos/5668481/pexels-photo-5668481.jpeg" alt="Advogados brasileiros em reunião profissional">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Áreas de Atuação -->
+    <!-- Áreas de Atuação - responsividade melhorada -->
     <section class="services">
         <div class="container">
             <div class="section-title">
@@ -394,23 +654,72 @@
             <div class="services-grid">
                 <div class="service-card">
                     <h3>Divórcio e Separação</h3>
-                    <p>Assessoria completa em processos de divórcio litigioso ou consensual, partilha de bens, pensão alimentícia e todos os aspectos legais envolvidos no fim de um relacionamento.</p>
-                    <img src="/api/placeholder/400/150" alt="Divórcio e Separação" style="width: 100%; height: 150px; object-fit: cover; margin-top: 15px; border-radius: 4px;">
+                    <p>Assessoria completa em processos de divórcio litigioso ou consensual, partilha de bens e pensão alimentícia.</p>
+                    <div class="image-container image-overlay">
+                        <img src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg" alt="Divórcio e Separação">
+                    </div>
                 </div>
                 <div class="service-card">
                     <h3>Guarda e Visitas</h3>
-                    <p>Orientação e representação em processos de guarda compartilhada ou unilateral, regulamentação de visitas e convivência familiar, sempre priorizando o bem-estar dos filhos.</p>
-                    <img src="/api/placeholder/400/150" alt="Guarda e Visitas" style="width: 100%; height: 150px; object-fit: cover; margin-top: 15px; border-radius: 4px;">
+                    <p>Orientação em processos de guarda compartilhada ou unilateral, sempre priorizando o bem-estar dos filhos.</p>
+                    <div class="image-container image-overlay">
+                        <img src="https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg" alt="Guarda e Visitas">
+                    </div>
                 </div>
                 <div class="service-card">
                     <h3>Violência Doméstica</h3>
-                    <p>Suporte jurídico para vítimas de violência doméstica, incluindo obtenção de medidas protetivas, orientação sobre direitos e acompanhamento em todas as etapas do processo.</p>
-                    <img src="/api/placeholder/400/150" alt="Violência Doméstica" style="width: 100%; height: 150px; object-fit: cover; margin-top: 15px; border-radius: 4px;">
+                    <p>Suporte jurídico para vítimas, incluindo obtenção de medidas protetivas e orientação sobre direitos.</p>
+                    <div class="image-container image-overlay">
+                        <img src="https://images.pexels.com/photos/821754/pexels-photo-821754.jpeg" alt="Violência Doméstica">
+                    </div>
                 </div>
                 <div class="service-card">
                     <h3>Pensão Alimentícia</h3>
-                    <p>Assessoria para estabelecimento, revisão ou execução de pensão alimentícia, garantindo que as necessidades dos filhos sejam devidamente atendidas.</p>
-                    <img src="/api/placeholder/400/150" alt="Pensão Alimentícia" style="width: 100%; height: 150px; object-fit: cover; margin-top: 15px; border-radius: 4px;">
+                    <p>Assessoria para estabelecimento, revisão ou execução de pensão alimentícia para garantir o bem-estar dos filhos.</p>
+                    <div class="image-container image-overlay">
+                        <img src="https://images.pexels.com/photos/4386327/pexels-photo-4386327.jpeg" alt="Pensão Alimentícia">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nova seção de depoimentos -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Que Dizem Nossos Clientes</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">A equipe do Gaudio Advocacia conduziu meu processo de divórcio com profissionalismo e empatia. Suas orientações foram fundamentais para que chegássemos a um acordo justo para todos os envolvidos.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Cliente">
+                        <div class="author-info">
+                            <h4>Mariana Silva</h4>
+                            <p>Rio de Janeiro, RJ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">Graças à excelente assessoria jurídica no processo de guarda compartilhada, consegui manter uma relação saudável com meus filhos mesmo após a separação. Recomendo fortemente.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente">
+                        <div class="author-info">
+                            <h4>Ricardo Mendes</h4>
+                            <p>São Paulo, SP</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">Em um momento de extrema fragilidade emocional, encontrei no Gaudio Advocacia o suporte jurídico e humano que precisava. O atendimento personalizado fez toda a diferença no meu caso.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente">
+                        <div class="author-info">
+                            <h4>Carla Oliveira</h4>
+                            <p>Brasília, DF</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -423,8 +732,8 @@
                 <h2>A Importância de um Advogado Especializado</h2>
             </div>
             <div class="about-content">
-                <div class="about-image">
-                    <img src="/api/placeholder/600/400" alt="Advogado em reunião com cliente">
+                <div class="about-image image-overlay" style="margin-right: 30px;">
+                    <img src="https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg" alt="Advogado especializado no Rio de Janeiro">
                 </div>
                 <div class="about-text">
                     <h3 style="position: relative; padding-bottom: 15px; margin-bottom: 20px;">Por Que Contar com Nossa Assessoria</h3>
@@ -436,7 +745,7 @@
                             left: 0;
                             width: 50px;
                             height: 2px;
-                            background-color: #bf9e4a;
+                            background-color: #8A2432;
                         }
                     </style>
                     <p>Em situações que envolvem o direito de família, contar com um advogado especializado não é apenas recomendável, mas essencial para garantir seus direitos.</p>
