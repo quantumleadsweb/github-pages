@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - my-pages
+      - projeto-juridico
     paths:
       - _config.yml
 
